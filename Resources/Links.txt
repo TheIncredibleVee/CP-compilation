@@ -1,0 +1,9 @@
+Maths for CP (Playlist)
+https://youtube.com/playlist?list=PLN4aKSfpk8TQUiURV1k70At4Tj5oKb92i
+
+
+Time Complexity Guide(Blog)
+https://codeforces.com/blog/entry/21344#:~:text=Explanations%20based%20on%20Codeforces%20problems&text=Observe%20that%201%20%E2%89%A4%20n,binary%20search%20must%20be%20used.
+
+Template:
+https://discuss.codechef.com/t/a-template-for-competitive-programming/96772

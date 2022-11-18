@@ -10,6 +10,7 @@
 #define INF_LL 2e18
 #define matmax 25
 #define mod 1000000007
+#define PI 3.14159265
 #define mp make_pair
 #define pb push_back
 #define pi pair<int, int>
@@ -25,6 +26,9 @@
 #define ub upper_bound  // First element GREATER than val
 #define sz(q) (int)(q.size())
  
+string to_string(bool b) { return b ? "1" : "0"; }
+string to_string(char c) { return string(1, c); }
+string to_string(string s) { return s; }
 using namespace std;
 using namespace __gnu_pbds;
 typedef long long int ll;
