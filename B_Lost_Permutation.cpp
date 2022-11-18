@@ -2,6 +2,14 @@
 #include <bits/stdc++.h>    
 #include<ext/pb_ds/assoc_container.hpp> //Policy based Data Structrues containter
 #include<ext/pb_ds/tree_policy.hpp> //Ordered set
+
+#define ook order_of_key  // Number of elements STRICTLY smaller than X
+#define fbo find_by_order  //  *ITERATOR* pointing to the kth element (0 order)
+#define fo(a,b) for(auto i=a;i<b;++i)
+#define nfo(a,b) for(auto i=a;i>=b;--i)
+#define jfo(a,b) for(auto j=a;j<b;++j)
+#define njfo(a,b) for(auto j=a;j>=b;--j)
+#define tt ll t; cin>>t; while(t--)
 #define gcj "Case #"    //For Kickstart 
 #define adj_list vector<vi> // Adjacency list
 #define endl "\n"
@@ -25,24 +33,15 @@
 #define lb lower_bound  // First element NOT LESS than val
 #define ub upper_bound  // First element GREATER than val
 #define sz(q) (int)(q.size())
-#define ook order_of_key  // Number of elements STRICTLY smaller than X
-#define fbo find_by_order  //  *ITERATOR* pointing to the kth element (0 order)
-
-#define fo(a,b) for(auto i=a;i<b;++i)
-#define nfo(a,b) for(auto i=a;i>=b;--i)
-#define jfo(a,b) for(auto j=a;j<b;++j)
-#define njfo(a,b) for(auto j=a;j>=b;--j)
-#define tt ll t; cin>>t; while(t--)
-
 using namespace std;
 using namespace __gnu_pbds;
 typedef long long int ll;
 typedef long int li;
+
  
 string to_string(bool b) { return b ? "1" : "0"; }
 string to_string(char c) { return string(1, c); }
 string to_string(string s) { return s; }
-
 
 template<typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update>;
 
@@ -110,7 +109,38 @@ string dectobin(ll n)
     return "0";
 }
 void solve(){
-    
+    ll m, s;
+    cin>>m>>s;
+    vl a(m, 0);
+    ll sum = 0;
+    unordered_set<ll> st;
+    ll mx = INT_MIN;
+    ll mn = INT_MAX;
+    fo(0, m){
+        cin>>a[i];
+        sum += a[i];
+        st.insert(a[i]);
+        mx = max(mx, a[i]);
+        mn = min(mn, a[i]);
+    }
+    double root = (sqrt((s + sum)*8  + 1) - 1)/2;
+    ll n = (ll)root;
+    if(st.size() != m || mx > n || m == n || n != root || mn <= 0){
+        print("NO");
+        return;
+    }
+    ll rest_sum = 0;
+    fo(1, n+1){
+        if(st.find(i) == st.end()){
+            rest_sum += i;
+        }
+    }
+    if(rest_sum  == s){
+        print("YES");
+        return;
+    }
+    print("NO");
+    return;
 }
 
 int main(){

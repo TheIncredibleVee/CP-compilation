@@ -25,15 +25,6 @@
 #define lb lower_bound  // First element NOT LESS than val
 #define ub upper_bound  // First element GREATER than val
 #define sz(q) (int)(q.size())
-#define ook order_of_key  // Number of elements STRICTLY smaller than X
-#define fbo find_by_order  //  *ITERATOR* pointing to the kth element (0 order)
-
-#define fo(a,b) for(auto i=a;i<b;++i)
-#define nfo(a,b) for(auto i=a;i>=b;--i)
-#define jfo(a,b) for(auto j=a;j<b;++j)
-#define njfo(a,b) for(auto j=a;j>=b;--j)
-#define tt ll t; cin>>t; while(t--)
-
 using namespace std;
 using namespace __gnu_pbds;
 typedef long long int ll;
@@ -43,6 +34,14 @@ string to_string(bool b) { return b ? "1" : "0"; }
 string to_string(char c) { return string(1, c); }
 string to_string(string s) { return s; }
 
+#define ook order_of_key  // Number of elements STRICTLY smaller than X
+#define fbo find_by_order  //  *ITERATOR* pointing to the kth element (0 order)
+
+#define fo(a,b) for(auto i=a;i<b;++i)
+#define nfo(a,b) for(auto i=a;i>=b;--i)
+#define jfo(a,b) for(auto j=a;j<b;++j)
+#define njfo(a,b) for(auto j=a;j>=b;--j)
+#define tt ll t; cin>>t; while(t--)
 
 template<typename T> using pbds = tree<T, null_type, less<T>, rb_tree_tag,tree_order_statistics_node_update>;
 
@@ -110,7 +109,27 @@ string dectobin(ll n)
     return "0";
 }
 void solve(){
-    
+    string s;
+    cin>>s;
+    string t = "Yes";
+    int start = 0;
+    if(s[0] == 'Y'){
+        start = 0;
+    }else if(s[0] == 'e'){
+        start = 1;
+    }else if(s[0] == 's'){
+        start = 2;
+    }else{
+        print("NO");
+        return;
+    }
+    fo(0,sz(s)){
+        if(s[i] != t[(i+start)%3]){
+            print("NO");
+            return;
+        }
+    }
+    print("YES");
 }
 
 int main(){
