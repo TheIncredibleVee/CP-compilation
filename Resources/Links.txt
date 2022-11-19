@@ -7,3 +7,7 @@ https://codeforces.com/blog/entry/21344#:~:text=Explanations%20based%20on%20Code
 
 Template:
 https://discuss.codechef.com/t/a-template-for-competitive-programming/96772
+
+Competitive Programmer’s Handbook
+https://cses.fi/book/book.pdf
+
