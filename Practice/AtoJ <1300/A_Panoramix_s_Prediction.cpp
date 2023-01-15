@@ -27,7 +27,6 @@
 #define sz(q) (int)(q.size())
 #define ook order_of_key  // Number of elements STRICTLY smaller than X
 #define fbo find_by_order  //  *ITERATOR* pointing to the kth element (0 order)
-#define VEC_INP ll n; cin>>n; vl a(n);fo(0, n){cin>>a[i];};
 
 #define fo(a,b) for(auto i=a;i<b;++i)
 #define nfo(a,b) for(auto i=a;i>=b;--i)
@@ -110,21 +109,62 @@ string dectobin(ll n)
         return s.substr(loc1);
     return "0";
 }
-
-string replaceall(string s, string &from, string to){
-	ll idx = 0;
-	while((idx = s.find(from,idx)) != string::npos){
-		s.replace(idx, from.length(), to);
-		idx += to.length();				// Incase to is a substring of from, so that the there is no infinite loop
+bool check(ll n){
+	if(n == 2|| n ==3){
+		return true;
+	} 
+	if(n%2 ==0 || n%3 == 0){
+		return false;
 	}
-	return s;
+	for(ll i = 5; i <= sqrt(n);i+=6){
+		if(n % i == 0 || n %(i +2) ==0){
+			return false;
+		}
+	}
+	return true;
 }
 
 void solve(){
-    
+    ll n, m;
+	cin>>n>>m;
+	if(n > m){
+		print("NO");
+		return;
+	}
+	if(n ==2){
+		if( m ==3){
+			print("YES");
+		}else{
+			print("NO");
+		}
+		return;
+	}
+	if(n == 3){
+		if(m ==5){
+			print("YES");
+		}else{
+			print("NO");
+		}
+		return;
+	}
+	if(check(n)){
+		if(!check(m)){
+			print("NO");
+			return;
+		}
+		ll temp = n + 1;
+		while(temp != m){
+			if(check(temp)){
+				print("NO");
+				return;
+			}
+			temp++;
+		}
+	}
+	print("YES");
 }
 
 int main(){
 	fastio
-	tt solve();
+	solve();
 }

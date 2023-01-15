@@ -27,7 +27,6 @@
 #define sz(q) (int)(q.size())
 #define ook order_of_key  // Number of elements STRICTLY smaller than X
 #define fbo find_by_order  //  *ITERATOR* pointing to the kth element (0 order)
-#define VEC_INP ll n; cin>>n; vl a(n);fo(0, n){cin>>a[i];};
 
 #define fo(a,b) for(auto i=a;i<b;++i)
 #define nfo(a,b) for(auto i=a;i>=b;--i)
@@ -110,21 +109,36 @@ string dectobin(ll n)
         return s.substr(loc1);
     return "0";
 }
-
-string replaceall(string s, string &from, string to){
-	ll idx = 0;
-	while((idx = s.find(from,idx)) != string::npos){
-		s.replace(idx, from.length(), to);
-		idx += to.length();				// Incase to is a substring of from, so that the there is no infinite loop
-	}
-	return s;
-}
-
 void solve(){
-    
+    int mat[3][3];
+    int res[3][3];
+    memset(res, 0, sizeof(res));
+    fo(0,3){
+        jfo(0,3){
+            cin>>mat[i][j];
+            if(mat[i][j]){
+                res[i][j] += mat[i][j];
+                i > 0 ? res[i-1][j]+=mat[i][j] : 0;
+                j > 0 ? res[i][j - 1]+=mat[i][j] : 0;
+                i < 2 ? res[i + 1][j]+=mat[i][j] : 0;
+                j < 2 ? res[i][j + 1]+=mat[i][j] : 0;
+            }
+        }
+    }
+    fo(0 ,3){
+        jfo(0 ,3){
+            if(res[i][j]% 2){
+                cout<<0;
+            }else{
+                cout<<1;
+            }
+        }
+        cout<<endl;
+    }
+
 }
 
 int main(){
 	fastio
-	tt solve();
+	solve();
 }

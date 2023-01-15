@@ -27,7 +27,6 @@
 #define sz(q) (int)(q.size())
 #define ook order_of_key  // Number of elements STRICTLY smaller than X
 #define fbo find_by_order  //  *ITERATOR* pointing to the kth element (0 order)
-#define VEC_INP ll n; cin>>n; vl a(n);fo(0, n){cin>>a[i];};
 
 #define fo(a,b) for(auto i=a;i<b;++i)
 #define nfo(a,b) for(auto i=a;i>=b;--i)
@@ -110,18 +109,45 @@ string dectobin(ll n)
         return s.substr(loc1);
     return "0";
 }
-
-string replaceall(string s, string &from, string to){
-	ll idx = 0;
-	while((idx = s.find(from,idx)) != string::npos){
-		s.replace(idx, from.length(), to);
-		idx += to.length();				// Incase to is a substring of from, so that the there is no infinite loop
-	}
-	return s;
-}
-
 void solve(){
-    
+    ll n,m;
+    cin>>n>>m;
+    vl vec(n);
+    vector<pl> v(n);
+    fo(0, n){
+        cin>>vec[i];
+        v[i] = {vec[i] , i};
+    }    
+    sort(all(v));
+    ll sum = 0;
+    ll cnt = 0;
+    fo(0 , n){
+        sum += v[i].first;
+        if(sum > m){
+            break;
+        }
+        cnt++;
+    }
+    if(cnt == 0){
+        print(n+ 1);
+        return;
+    }
+    if(cnt == n){
+        print(1);
+        return;
+    }
+    fo(cnt, n){
+        v[i].second++;
+    }
+    ll res = 0;
+    fo(0 , n){
+        cout<<v[i].second<<" ";
+        if(v[i].second > cnt){
+            res++;
+        }
+    }
+    cout<<endl;
+    print(res + 1);
 }
 
 int main(){

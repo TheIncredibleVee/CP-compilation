@@ -27,7 +27,6 @@
 #define sz(q) (int)(q.size())
 #define ook order_of_key  // Number of elements STRICTLY smaller than X
 #define fbo find_by_order  //  *ITERATOR* pointing to the kth element (0 order)
-#define VEC_INP ll n; cin>>n; vl a(n);fo(0, n){cin>>a[i];};
 
 #define fo(a,b) for(auto i=a;i<b;++i)
 #define nfo(a,b) for(auto i=a;i>=b;--i)
@@ -110,21 +109,43 @@ string dectobin(ll n)
         return s.substr(loc1);
     return "0";
 }
-
-string replaceall(string s, string &from, string to){
-	ll idx = 0;
-	while((idx = s.find(from,idx)) != string::npos){
-		s.replace(idx, from.length(), to);
-		idx += to.length();				// Incase to is a substring of from, so that the there is no infinite loop
-	}
-	return s;
-}
-
 void solve(){
-    
+    ll n, sum = 0;
+    ll cnt = 0;
+    ll res;
+    cin>>n;
+    vl a(7);
+    fo(0,7){
+        cin>>a[i];
+        if(a[i] == 0){
+            cnt++;
+        }
+        sum += a[i];
+        if(sum >= n){
+            print(i + 1);
+            return;
+        }
+    } 
+    ll temp = n % sum;
+    if(temp == 0){
+        nfo(6, 0){
+            if(a[i]){
+                print(i +1);
+                return;
+            }
+        }
+    }
+    fo(0 , 7){
+        temp -= a[i];
+        if(temp <= 0){
+            print(i + 1);
+            return;
+        }
+    }
+    return;
 }
 
 int main(){
 	fastio
-	tt solve();
+	solve();
 }
