@@ -102,6 +102,19 @@ ll powa(ll a, ll b, ll m = mod){
 	}
 }
 
+bool check_prime(ll n){
+    if(n==1)
+        return false;
+    if(n==2 || n==3 || n==5 || n==7)
+        return true;
+    for(ll i=2; i*i<=n; i++)
+    {
+        if(n%i==0)
+            return false;
+    }
+    return true;
+}
+
 string dectobin(ll n)
 {
     string s = bitset<64> (n).to_string();
